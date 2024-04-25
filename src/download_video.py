@@ -1,27 +1,36 @@
 import praw
-from pytube import Reddit
+import requests
+import os
 
-def download_reddit_video(url, output_file):
-    reddit = Reddit()
-    video = reddit.from_url(url)
-    stream = video.streams.filter(progressive=True).first()
-    if stream:
-        stream.download(output_path='.', filename=output_file)
+def generate_links(reddit,subreddit_name,limit_number):
+    subreddit = reddit.subreddit(subreddit_name)
+
+    top_posts = subreddit.top(limit=limit_number)
+    post_links = []
+
+    for post in top_posts:
+        post_links.append(f"https://www.reddit.com{post.permalink}")
+    
+    return post_links
+
+def download_video(url, output_file):
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        with open(output_file, 'wb') as f:
+            f.write(response.content)
         print(f"Video downloaded successfully as '{output_file}'")
     else:
-        print("No stream available for download")
+        print(f"Failed to download video. Status code: {response.status_code}")
 
-# REPLACE THE EMPTY STRINGS WITH YOUR CREDENTIALS
-# GO THROUGH README FILE FOR REDDIT API
-reddit = praw.Reddit(client_id='',
-                     client_secret='',
-                     user_agent='')
+# Replace the empty strings with your details
+# Refer Readme for more info
+reddit = praw.Reddit(client_id='',client_secret='',user_agent='')
+ 
+post_links = generate_links(reddit,"Unexpected",3)
 
-subreddit = reddit.subreddit('Unexpected')
-
-top_posts = subreddit.top(limit=3)
-
-
-for post in top_posts:
-    if post.is_video:
-        download_reddit_video(post.media['reddit_video']['fallback_url'], f'{post.id}.mp4')
+for post_link in post_links:
+    unique_post_id = post_link.split("/")[-3]
+    post_title = post_link.split("/")[-2]
+    print("Downloading video titled - ",post_title)
+    download_video(post_link,os.path.join("output",unique_post_id))
