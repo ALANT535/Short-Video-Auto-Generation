@@ -27,8 +27,8 @@ def get_post_details(post_link):
     # return
     #parse through the json file
 
-    post_check = data[0]['kind']
-    print(post_check,"FINALLY")
+    # post_check = data[0]['kind']
+    # print(post_check,"FINALLY")
     post_title = data[0]['data']['children'][0]['data']['title']
     post_duration = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['duration']
     if (len(data[0]['data']['children'][0]['data']['link_flair_richtext']) == 0):
@@ -44,10 +44,7 @@ def get_post_details(post_link):
     
     return [post_title,post_duration,post_flair,is_nsfw]
 
-def is_valid(post_link):
-    print("before post_details",post_link)
-    post_link = r"{}{}.json".format(post_link, "")
-    post_title,post_duration,post_flair,is_nsfw = get_post_details(post_link)
+def is_valid(post_duration,post_flair,is_nsfw):
     
     # dont want nsfw content
     if (is_nsfw):
@@ -63,7 +60,7 @@ def is_valid(post_link):
     if (post_flair == "Donald Trump leaked sex tapes "):
         return False
     
-    return True
+    return [True,post_duration]
 
 # example usage
-# print(is_valid("https://www.reddit.com/r/MemeVideos/comments/188qfmq/grus_tragic_fate/"))
+# print(is_valid(17,"None",True))
