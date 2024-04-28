@@ -13,5 +13,6 @@ def get_counter(subreddit):
     else:
         return 0
 
+# example usage
 # counter = get_counter("Unexpected")
 # print(counter)
