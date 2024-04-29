@@ -11,7 +11,7 @@ subreddit = "MemeVideos"
 counter = get_counter(subreddit)
 
 # Take 15 links more than the curernt counter
-# Assuming that the video duration constraint is 20 sec, a 120 second video will be 6 videos
+# Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
 post_links = generate_links(subreddit,counter + 25)
 
 os.path.abspath(__file__)
@@ -38,7 +38,7 @@ for post_link in post_links:
             print("Error when downloading video with link - ",post_link)
     
     # we got as many videos as we wanted
-    if (current_duration_counter>120):
+    if (current_duration_counter>60):
         break
           
     else:
