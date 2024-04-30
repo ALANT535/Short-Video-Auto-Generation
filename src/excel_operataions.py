@@ -23,7 +23,6 @@ def write_counter(subreddit, counter):
         print(df.columns)
     except:
         print("couldnt open excel file.")
-    # check if the subreddit already exists in the DataFrame
     if subreddit in df['SubReddit Name'].values:
         # if the subreddit exists, update the counter
         df.loc[df['SubReddit Name'] == subreddit, 'Counter'] = counter
