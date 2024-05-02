@@ -49,17 +49,18 @@ try:
     write_counter(subreddit, counter)
 except:
     print("There was an error while trying to write the counter")
-    
+
+# okay now have to work on the merging part
+
+# 2 cases
+
+# either its in the shorts format and we can just scale it up to the required resolution of 1080 * 1920p
+# or we would have to take the minimmum of the length, breadth and then scale it up as per whichever one is minimum
+
+# we then merge the videos
+
+# this is the opposite of 1920 * 1080p as it is in laptops
 
 
-
-    # 1080 pixels x 1920 pixels
-    # aspect ratio of 16:9
+# if __name__ == "main":
     
-    
-    
-    # break
-    
-
-
-# generate_links
