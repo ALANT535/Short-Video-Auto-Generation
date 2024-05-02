@@ -6,16 +6,14 @@ excel_path = os.path.join(parent_directory,"Excel Files","test.xlsx")
 
 def get_counter(subreddit):
     try:
-        df = pd.read_excel(excel_path)
-        print(df.columns)
+        df = pd.read_excel(excel_path,index_col="SubReddit Name")
         
     except:
         print("couldnt open excel file.")
         
-    print(df["SubReddit Name"].values)
     
     #if the subreddit has already been used before, then consider videos after that counter
-    if (subreddit in df["SubReddit Name"].values):
+    if (subreddit in list(df.index)):
         return df.loc[subreddit,"Counter"]
     
     #else start from the first post
@@ -44,7 +42,7 @@ def write_counter(subreddit, counter):
     
 # example usage
 # print(get_counter("Unexpected"))
-# write_counter("Unexpected",45)
+write_counter("Unexpected",60)
 
 print(get_counter("Memes"))
-# print(get_counter("Unexpected"))
+print(get_counter("Unexpected"))
