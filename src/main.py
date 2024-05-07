@@ -52,6 +52,7 @@ def create(subreddit):
         print("There was an error while trying to write the counter")
 
 # okay now have to work on the merging part
+#WILL CONTINUE TO WORK AFTER EXAMS
 
 # 2 cases
 
