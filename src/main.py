@@ -27,7 +27,7 @@ def create(subreddit):
         counter += 1
         
         post_link = r"{}{}.json".format(post_link, "")
-        post_title,post_duration,post_flair,is_nsfw = get_post_details(post_link)
+        post_title,post_duration,post_flair,is_nsfw,post_height,post_width = get_post_details(post_link)
         
         if (is_valid(post_duration,post_flair,is_nsfw)):
             try:
@@ -63,6 +63,12 @@ def create(subreddit):
 
 # this is the opposite of 1920 * 1080p as it is in laptops
 
+# a main issue is that we wouldnt know which
+
+# one of the resolutions observed was 792*480
+# height * width
+# 1920*1080 - aspect ratio of 1.77778
+# 792   
 
 if __name__ == "__main__":
     subreddit = "MemeVideos"

@@ -35,14 +35,20 @@ def get_post_details(post_link):
         post_flair = "None"
     else:
         post_flair = data[0]['data']['children'][0]['data']['link_flair_richtext'][0]['t']
+    
+    post_height = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['height']
+    post_width = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['width']
         
     is_nsfw = "nsfw" in str(data)
 
     print("Post Title is - ",post_title)
     print("Post duration is - ",post_duration)
     print("Post flair is - ",post_flair)
+    print("Post height is - ",post_height)
+    print("Post width is - ",post_width)
     
-    return [post_title,post_duration,post_flair,is_nsfw]
+    return [post_title,post_duration,post_flair,is_nsfw,post_height,post_width]
+
 
 def is_valid(post_duration,post_flair,is_nsfw):
     
@@ -63,4 +69,5 @@ def is_valid(post_duration,post_flair,is_nsfw):
     return [True,post_duration]
 
 # example usage
+# get_post_details(r"https://www.reddit.com/r/Unexpected/comments/1cuuxxa/they_better_tip_that_crab_good/.json")
 # print(is_valid(17,"None",True))
