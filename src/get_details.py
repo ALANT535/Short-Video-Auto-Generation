@@ -18,7 +18,7 @@ def generate_links(subreddit_name, limit_number):
 #input a link to a reddit post and return the duration, title and flair of the post
 def get_post_details(post_link):
     # post_link = r"{}{}.json".format(post_link, "")
-    print("before post_details",post_link)
+    print("Post Link found - ",post_link)
     # resp = requests.get(post_link)
     resp = requests.get(post_link, headers = {'User-agent': 'GENREEL'})
     data = resp.json()
@@ -50,7 +50,7 @@ def get_post_details(post_link):
     return [post_title,post_duration,post_flair,is_nsfw,post_height,post_width]
 
 
-def is_valid(post_duration,post_flair,is_nsfw):
+def is_valid(post_duration,post_flair,is_nsfw,post_height,post_width):
     
     # dont want nsfw content
     if (is_nsfw):
@@ -66,7 +66,11 @@ def is_valid(post_duration,post_flair,is_nsfw):
     if (post_flair == "Donald Trump leaked sex tapes "):
         return False
     
-    return [True,post_duration]
+    if (post_height < post_width):
+        return False
+    
+    
+    return True
 
 # example usage
 # get_post_details(r"https://www.reddit.com/r/Unexpected/comments/1cuuxxa/they_better_tip_that_crab_good/.json")

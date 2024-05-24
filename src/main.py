@@ -4,7 +4,7 @@ import os
 from excel_operataions import *
 from download_video_mine import *
 from get_details import *
-from using_yt_dlp import *
+from video_operations import *
 
 subreddit = "MemeVideos"
 
@@ -29,9 +29,9 @@ def create(subreddit):
         post_link = r"{}{}.json".format(post_link, "")
         post_title,post_duration,post_flair,is_nsfw,post_height,post_width = get_post_details(post_link)
         
-        if (is_valid(post_duration,post_flair,is_nsfw)):
+        if (is_valid(post_duration,post_flair,is_nsfw,post_height,post_width)):
             try:
-                download_video_with_ytdlp(post_link,os.path.join(ouptut_directory,"video" + str(counter)))
+                download_video_with_ytdlp(post_link,os.path.join(ouptut_directory,"video_" + str(post_width) + "_" + str(post_height) + "_"))
                 
                 current_duration_counter += post_duration
                 
@@ -48,22 +48,13 @@ def create(subreddit):
         
     try:
         write_counter(subreddit, counter)
+        print("Successfully able to write the counter into the excel file.")
     except:
         print("There was an error while trying to write the counter")
-
-# okay now have to work on the merging part
-#WILL CONTINUE TO WORK AFTER EXAMS
-
-# 2 cases
-
-# either its in the shorts format and we can just scale it up to the required resolution of 1080 * 1920p
-# or we would have to take the minimmum of the length, breadth and then scale it up as per whichever one is minimum
-
-# we then merge the videos
-
-# this is the opposite of 1920 * 1080p as it is in laptops
-
-# a main issue is that we wouldnt know which
+        
+    
+    resize(get_clip_dimensions(ouptut_directory))
+    # implement this function next
 
 # one of the resolutions observed was 792*480
 # height * width
@@ -73,4 +64,3 @@ def create(subreddit):
 if __name__ == "__main__":
     subreddit = "MemeVideos"
     create(subreddit)
-    
