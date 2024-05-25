@@ -9,11 +9,11 @@ from video_operations import *
 subreddit = "MemeVideos"
 
 
-# Take 15 links more than the curernt counter
+# Take 25 links more than the current counter
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
 def create(subreddit):
     counter = get_counter(subreddit)
-    post_links = generate_links(subreddit,counter + 25)
+    post_links = generate_links(subreddit,counter)
 
     os.path.abspath(__file__)
     ouptut_directory = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"output")
@@ -52,14 +52,6 @@ def create(subreddit):
     except:
         print("There was an error while trying to write the counter")
         
-    
-    resize(get_clip_dimensions(ouptut_directory))
-    # implement this function next
-
-# one of the resolutions observed was 792*480
-# height * width
-# 1920*1080 - aspect ratio of 1.77778
-# 792   
 
 if __name__ == "__main__":
     subreddit = "MemeVideos"
