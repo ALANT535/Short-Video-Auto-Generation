@@ -67,7 +67,8 @@ def merge_videos(video_clip_list, output_path):
 
     final_clip.write_videofile(output_path, codec="libx264", audio_codec="aac")
 
-resize_clips("output","resized",720)
+resize_clips("output","resized_clips",720)
+
 videos = list(os.listdir(r"resized_clips"))
 video_paths = [os.path.join("resized_clips",video) for video in videos]
 
