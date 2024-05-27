@@ -27,9 +27,15 @@ def get_clip_dimensions(output_path):
     
     return clip_dimensions
 
+def strip_metadata(input_path, output_path):
+    os.system(f'ffmpeg -y -i "{input_path}" -vf "transpose=1,transpose=2" "{output_path}"')
+
 
 # first approach
 def resize_clips(output_path,resized_path,standard_width = 720):
+    
+    # strip_metadata(r"output\video_681_720_.mp4",r"resized_clips\stripped.mp4")
+    
     # initializing it to a negative number
     max_height = -1
     
@@ -67,10 +73,13 @@ def merge_videos(video_clip_list, output_path):
 
     final_clip.write_videofile(output_path, codec="libx264", audio_codec="aac")
 
-resize_clips("output","resized_clips",720)
+# resize_clips("output","resized_clips",720)
 
 videos = list(os.listdir(r"resized_clips"))
 video_paths = [os.path.join("resized_clips",video) for video in videos]
 
 output_path = os.path.join("resized_clips","merged_testing.mp4")
-merge_videos(video_paths,output_path)
+# merge_videos(video_paths,output_path)
+
+
+strip_metadata(r"output\video_681_720_.mp4",r"resized_clips\stripped.mp4")
