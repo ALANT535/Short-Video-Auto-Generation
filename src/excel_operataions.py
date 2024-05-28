@@ -42,5 +42,4 @@ def write_counter(subreddit, counter):
     
 # example usage
 # print(get_counter("Unexpected"))
-# write_counter("MemeVideos",24)
-# print(get_counter("MemeVideos"))
+# write_counter("MemeVideos",38)

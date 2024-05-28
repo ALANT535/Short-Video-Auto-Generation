@@ -1,6 +1,6 @@
 # import praw
 import pandas as pd
-import os
+import os,time
 from excel_operataions import *
 from download_video_mine import *
 from get_details import *
@@ -12,6 +12,11 @@ subreddit = "MemeVideos"
 # Take 25 links more than the current counter
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
 def create(subreddit):
+    
+    # deleting any temporary video clips
+    delete_files(r"output")
+    delete_files(r"resized_clips")
+    
     counter = get_counter(subreddit)
     post_links = generate_links(subreddit,counter)
 
@@ -45,6 +50,18 @@ def create(subreddit):
         else:
             print("Skipping the video as not valid")
             continue
+    
+    video_width = 720
+    resized_path = r"resized_clips"
+    output_path = r"output"
+    
+    # resize all the clips to a standard width( may be 720p )
+    resize_clips(output_path,resized_path,video_width)
+    
+    # merge all the clips together to get merged_.mp4
+    # this will be stored in the resized_clisp folder
+    merge_videos(resized_path,os.path.join("output","merged_.mp4"))
+    
         
     try:
         write_counter(subreddit, counter)

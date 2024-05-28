@@ -1,4 +1,4 @@
-import subprocess,os
+import subprocess,os,time
 from moviepy.editor import VideoFileClip,concatenate_videoclips
 
 def download_video_with_ytdlp(url, output_file):
@@ -27,22 +27,23 @@ def get_clip_dimensions(output_path):
     
     return clip_dimensions
 
+
+# possible solution to some of the videos getting corrupted but since the final video is viewable despite the issue have not implemented this part
+# but might be necessary at a later stage
 def strip_metadata(input_path, output_path):
     os.system(f'ffmpeg -y -i "{input_path}" -vf "transpose=1,transpose=2" "{output_path}"')
 
 
 # first approach
 def resize_clips(output_path,resized_path,standard_width = 720):
-    
-    # strip_metadata(r"output\video_681_720_.mp4",r"resized_clips\stripped.mp4")
-    
-    # initializing it to a negative number
-    max_height = -1
+
     
     clip_names = list(os.listdir(output_path))
     
     for clip_name in clip_names:
-        clip = VideoFileClip(os.path.join("output",clip_name))
+        clip_path = os.path.join("output",clip_name)
+        
+        clip = VideoFileClip(clip_path)
         
         clip_width = clip.size[0]
         clip_height = clip.size[1]
@@ -54,32 +55,49 @@ def resize_clips(output_path,resized_path,standard_width = 720):
         except:
             print("Error when trying to resize.")
 
-        resized_clip_name = os.path.join("resized_clips","resized_" + str(standard_width) + "_" + str(new_height) + "_.mp4")
+        resized_clip_name = os.path.join(resized_path,"resized_" + str(standard_width) + "_" + str(new_height) + "_.mp4")
         
         try:
             resized_clip.write_videofile(resized_clip_name, codec='libx264')
         except:
             print("Error when trying to write resized file.")
+    
+    print("Resized all clips\n Going for deleting the videos in output folder")
+    time.sleep(3)
+    delete_files(output_path)
+    
+    
+def delete_files(dir_path):
+    for filename in os.listdir(dir_path):
+        file_path = os.path.join(dir_path, filename)
+        try:
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+                print(f"Deleted file: {file_path}")
+        except Exception as e:
+            print(f"Failed to delete {file_path}due to reason: {e}")
+    print("Deleted all videos in - " , dir_path)
 
 
 #to merge the resized videos
-def merge_videos(video_clip_list, output_path):
+def merge_videos(resized_path, merged_path):
     
-    video_clips = [VideoFileClip(video_clip) for video_clip in video_clip_list]
-
+    videos = list(os.listdir(resized_path))
+    video_paths = [os.path.join(resized_path,video) for video in videos]
+    
+    video_clips = [VideoFileClip(video_clip) for video_clip in video_paths]
 
     final_clip = concatenate_videoclips(video_clips,method="compose")
 
+    final_clip.write_videofile(merged_path, codec="libx264")
+    
+    time.sleep(3)
+    delete_files(resized_path)
 
-    final_clip.write_videofile(output_path, codec="libx264", audio_codec="aac")
 
+# example usage
 # resize_clips("output","resized_clips",720)
 
-videos = list(os.listdir(r"resized_clips"))
-video_paths = [os.path.join("resized_clips",video) for video in videos]
+# merge_videos(video_paths,os.path.join("resized_clips","merged_.mp4"))
 
-output_path = os.path.join("resized_clips","merged_testing.mp4")
-# merge_videos(video_paths,output_path)
-
-
-strip_metadata(r"output\video_681_720_.mp4",r"resized_clips\stripped.mp4")
+# delete_videos(r"output")
