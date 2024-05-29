@@ -11,3 +11,9 @@ This is an attempt to automate generation of short videos. The short video consi
 3. Create an app by filling in the details.
 4. Once created, note down your secret key and secret client id.
 5. These will be used to query Reddit through their API.
+
+
+## Sample Output Videos Created
+
+Find a few sample generated videos in the output folder in repository
+The file name of the file represents the subreddit it was picked up from.
