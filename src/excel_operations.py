@@ -46,9 +46,3 @@ def write_counter(subreddit, counter):
 # 54
 # write_counter("FunnyDogVideos",3)
 # 14
-
-write_counter("Memes",0)
-write_counter("Unexpected",0)
-write_counter("MemesvIDEAS",0)
-write_counter("MemeVideos",0)
-write_counter("FunnyDogVideos",0)
