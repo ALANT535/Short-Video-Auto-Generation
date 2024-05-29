@@ -1,12 +1,10 @@
 # import praw
 import pandas as pd
 import os,time
-from excel_operataions import *
-from download_video_mine import *
+from excel_operations import *
+from download_video import *
 from get_details import *
 from video_operations import *
-
-subreddit = "MemeVideos"
 
 
 # Take 25 links more than the current counter
@@ -71,5 +69,6 @@ def create(subreddit):
         
 
 if __name__ == "__main__":
-    subreddit = "MemeVideos"
+    #Enter the subreddit you want to fetch top posts from here
+    subreddit = "FunnyDogVideos"
     create(subreddit)
