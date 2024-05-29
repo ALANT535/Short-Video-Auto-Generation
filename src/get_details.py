@@ -4,8 +4,8 @@ import os
 
 # generate the top posts of all time from a subreddit with a certain limit
 def generate_links(subreddit_name, limit_number):
-    
-    # ENTER YOUR REDDIT API DETAILS HERE
+
+    #ENTER YOUR REDDIT API DETAILS HERE
     reddit = praw.Reddit(client_id='', client_secret='', user_agent='')
     subreddit = reddit.subreddit(subreddit_name)
 
@@ -26,14 +26,27 @@ def get_post_details(post_link):
     #parse through the json file
 
     post_title = data[0]['data']['children'][0]['data']['title']
-    post_duration = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['duration']
-    if (len(data[0]['data']['children'][0]['data']['link_flair_richtext']) == 0):
-        post_flair = "None"
-    else:
-        post_flair = data[0]['data']['children'][0]['data']['link_flair_richtext'][0]['t']
     
-    post_height = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['height']
-    post_width = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['width']
+    try:
+        post_duration = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['duration']
+    except:
+        post_duration = -1
+    
+    try:
+        post_flair = data[0]['data']['children'][0]['data']['link_flair_richtext'][0]['t']
+    except:
+        post_flair = "None"
+    
+    try:
+        post_height = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['height']
+    except:
+        post_height = -1
+    
+    try:
+        
+        post_width = data[0]['data']['children'][0]['data']['secure_media']['reddit_video']['width']
+    except:
+        post_width = -1
         
     is_nsfw = "nsfw" in str(data)
 
@@ -54,7 +67,7 @@ def is_valid(post_duration,post_flair,is_nsfw,post_height,post_width):
 
     
     # dont want videos longer thatn 20 seconds
-    if (post_duration > 20):
+    if (post_duration > 20 or post_duration < 0):
         return False
 
     
@@ -62,7 +75,7 @@ def is_valid(post_duration,post_flair,is_nsfw,post_height,post_width):
     if (post_flair == "Donald Trump leaked sex tapes "):
         return False
     
-    if (post_height < post_width):
+    if (post_height < post_width or post_height < 0 or post_width < 0):
         return False
     
     
