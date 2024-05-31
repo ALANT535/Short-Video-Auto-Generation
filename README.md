@@ -6,25 +6,25 @@ This is an attempt to automate generation of short videos that are prelevant in 
 
 ## Technologies Used
 
-    **Python:** 
+   **Python: **
     The application was built using Python and its libraries. Python's extensive standard library and third-party modules facilitate the development of robust automation scripts.
     
-    **Reddit API Integration:** 
+   **Reddit API Integration:** 
     Used to fetch video content directly from Reddit. This allows for automated retrieval and processing of videos posted on Reddit, enhancing the automation pipeline.
     
-    **FFmpeg:** 
+   **FFmpeg:** 
     A powerful multimedia framework used to decode, encode, and merge layers of any multimedia content. It ensures videos are processed and encoded to meet Instagram's specifications.
     
-    **MoviePy:** 
+   **MoviePy:** 
     A Python library for video editing, used for tasks like resizing and adding effects to videos. MoviePy simplifies complex video editing tasks with a straightforward API.
     
-    **Time Module:** 
+   **Time Module:** 
     To add delays in the script where necessary. It is particularly useful for creating pauses between tasks to ensure proper sequencing and timing.
 
-    **Praw**
+   **Praw**
     This is a crucial library used to interact with the REDDIT API.
 
-    **Youtube-dlp**
+   **Youtube-dlp**
     This is built on Youtube-dl which is further built on youtube-dlc as these libraries became inactive, It is a command-line interface that is provides support for hundreds of websites that have provide multimedia content. Using subprocess module, was able to simulate CLI commands through a python method itself.
 
 
