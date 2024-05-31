@@ -54,7 +54,8 @@ The file name of the file represents the subreddit it was picked up from.
 
 Once you have downloaded all the pre requisited, you may proceed with installation.
 
-### 1. Clone the Repository: Clone this repository to your local machine. Run the command in the command prompt or using git bash.
+### 1. Clone the Repository: <br>
+Clone this repository to your local machine. Run the command in the command prompt or using git bash.
 
 ```
 git clone https://github.com/ALANT535/Short-Video-Auto-Generation
@@ -62,6 +63,7 @@ git clone https://github.com/ALANT535/Short-Video-Auto-Generation
 
 ### 2. Navigate to the Project Directory:
 
+Run the following command to change the working directory
 ```
 cd /path/to/your/downloaded/repo
 ```
