@@ -6,26 +6,27 @@ This is an attempt to automate generation of short videos that are prelevant in 
 
 ## Technologies Used
 
-   **Python: **
-    The application was built using Python and its libraries. Python's extensive standard library and third-party modules facilitate the development of robust automation scripts.
-    
-   **Reddit API Integration:** 
-    Used to fetch video content directly from Reddit. This allows for automated retrieval and processing of videos posted on Reddit, enhancing the automation pipeline.
-    
-   **FFmpeg:** 
+   **Python:** <br>
+    The application was built using Python 3.10.4 and its libraries.
+<br>    
+   **Reddit API Integration:** <br>
+    Used to fetch video content directly from Reddit. This allows for automated retrieval and processing of videos posted on Reddit.
+<br>    
+   **FFmpeg:** <br>
     A powerful multimedia framework used to decode, encode, and merge layers of any multimedia content. It ensures videos are processed and encoded to meet Instagram's specifications.
-    
-   **MoviePy:** 
+ <br>   
+   **MoviePy:** <br>
     A Python library for video editing, used for tasks like resizing and adding effects to videos. MoviePy simplifies complex video editing tasks with a straightforward API.
-    
-   **Time Module:** 
-    To add delays in the script where necessary. It is particularly useful for creating pauses between tasks to ensure proper sequencing and timing.
-
-   **Praw**
-    This is a crucial library used to interact with the REDDIT API.
-
-   **Youtube-dlp**
-    This is built on Youtube-dl which is further built on youtube-dlc as these libraries became inactive, It is a command-line interface that is provides support for hundreds of websites that have provide multimedia content. Using subprocess module, was able to simulate CLI commands through a python method itself.
+<br>    
+   **Time Module:** <br>
+    To add delays in the script where necessary. It is particularly useful for creating pauses between tasks to ensure proper sequencing and timing. <br>
+<br>
+   **Praw:** <br>
+    This is a crucial library used to interact with the REDDIT API. <br>
+<br>
+   **Youtube-dlp** <br>
+    This is built on Youtube-dl which is further built on youtube-dlc as these libraries became inactive, It is a command-line interface that provides <br>
+    support for hundreds of websites that have provide multimedia content. Using subprocess module, was able to simulate CLI commands through a python method itself.
 
 
 ## Sample Output Videos Created
@@ -34,17 +35,19 @@ Find a few sample generated videos in the output folder of the repository
 The file name of the file represents the subreddit it was picked up from.
 
 
-### Prerequisites
+## Prerequisites
 
-    Python 3.6+: 
+  Python 3.6+: <br>
     Ensure you have Python installed on your machine. You can download it from Python's official site.
     
-    FFmpeg: 
+  FFmpeg: <br>
     Install FFmpeg on your machine as it will be needed for performing the resizing and merging opereations. 
     You can download it from FFmpeg's official site here - https://ffmpeg.org/download.html
     
-    Dependency list:
-    You may download the libraries needed from the 'requirements.txt' file. Its preferred to do so in a virtual environment in order to avoid any dependency conflicts. For more information on how to use venv,       refer the following resoure - https://docs.python.org/3/library/venv.html
+  Dependency list: <br>
+    You may download the libraries needed from the 'requirements.txt' file. Its preferred to do so in a virtual environment in order to <br> 
+    avoid any dependency conflicts. <br> <br>
+    For more information on how to use venv, refer the following resoure - https://docs.python.org/3/library/venv.html
 
 
 ## Installation Guide
