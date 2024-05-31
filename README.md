@@ -2,15 +2,24 @@
 
 ## Description
 
-This is an attempt to automate generation of short videos that are prelevant in short-content type platforms like Instagram Reels, Youtube Shorts etc. The primary motivation is to handle videos of various dimensions and ensure that they compile and in a proper manner without manual intervention. The only manual intervention involved in this project is just to run the 'main.py' script. The solution leverages tools like FFmpeg for video processing and Python scripts to automate tasks, making it efficient and reliable. This project helped to explore the moviepy library in addition to the FFmpeg software which helped to understand how the audio and video layers interact and merge with each other to form a video with sound.
+This is an attempt to automate generation of short videos that are prelevant in short-content type platforms like Instagram Reels, Youtube Shorts etc. The primary motivation is to handle videos of various dimensions and ensure that they compile and in a proper manner without manual intervention. The only manual intervention involved in this project is just to run the 'main.py' script. The solution leverages FFmpeg for video processing and Python scripts to automate tasks, making it efficient and reliable. This project helped to explore the moviepy library and its capabilities.
 
 ## Technologies Used
 
-**Python:** The application was built using Python and its libraries. Python's extensive standard library and third-party modules facilitate the development of robust automation scripts.
-**Reddit API Integration:** Used to fetch video content directly from Reddit. This allows for automated retrieval and processing of videos posted on Reddit, enhancing the automation pipeline.
-**FFmpeg:** A powerful multimedia framework used to decode, encode, and merge layers of any multimedia content. It ensures videos are processed and encoded to meet Instagram's specifications.
-**MoviePy:** A Python library for video editing, used for tasks like resizing and adding effects to videos. MoviePy simplifies complex video editing tasks with a straightforward API.
-**Time Module:** To add delays in the script where necessary. It is particularly useful for creating pauses between tasks to ensure proper sequencing and timing.
+**Python:** 
+The application was built using Python and its libraries. Python's extensive standard library and third-party modules facilitate the development of robust automation scripts.
+
+**Reddit API Integration:** 
+Used to fetch video content directly from Reddit. This allows for automated retrieval and processing of videos posted on Reddit, enhancing the automation pipeline.
+
+**FFmpeg:** 
+A powerful multimedia framework used to decode, encode, and merge layers of any multimedia content. It ensures videos are processed and encoded to meet Instagram's specifications.
+
+**MoviePy:** 
+A Python library for video editing, used for tasks like resizing and adding effects to videos. MoviePy simplifies complex video editing tasks with a straightforward API.
+
+**Time Module:** 
+To add delays in the script where necessary. It is particularly useful for creating pauses between tasks to ensure proper sequencing and timing.
 
 ## How to create and Use Reddit API
 
