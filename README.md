@@ -24,9 +24,10 @@ This is an attempt to automate generation of short videos that are prelevant in 
    **Praw:** <br>
     This is a crucial library used to interact with the REDDIT API. <br>
 <br>
-   **Youtube-dlp** <br>
+   **Youtube-dlp:** <br>
     This is built on Youtube-dl which is further built on youtube-dlc as these libraries became inactive, It is a command-line interface that provides <br>
     support for hundreds of websites that have provide multimedia content. Using subprocess module, was able to simulate CLI commands through a python method itself.
+    Github link - https://github.com/yt-dlp/yt-dlp
 
 
 ## Sample Output Videos Created
