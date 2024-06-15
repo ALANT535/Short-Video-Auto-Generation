@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an attempt to automate generation of short videos that are prelevant in short-content type platforms like Instagram Reels, Youtube Shorts etc. The primary motivation is to handle videos of various dimensions and ensure that they compile and in a proper manner without manual intervention. The only manual intervention involved in this project is just to run the 'main.py' script. The solution leverages FFmpeg for video processing and Python scripts to automate tasks, making it efficient and reliable. This project helped to explore the moviepy library and its capabilities.
+This is an attempt to automate generation of short videos that are prelevant in short-content type platforms like Instagram Reels, Youtube Shorts etc. The primary motivation is to handle videos of various dimensions and ensure that they compile in a proper manner without manual intervention. The only manual intervention involved in this project is just to run the 'main.py' script. The solution leverages FFmpeg for video processing and Python scripts to automate tasks, making it efficient and reliable. This project helped to explore the moviepy library and its capabilities.
 
 ## Technologies Used
 
