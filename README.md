@@ -46,8 +46,8 @@ The file name of the file represents the subreddit it was picked up from.
     You can download it from FFmpeg's official site here - https://ffmpeg.org/download.html
     
   Dependency list: <br>
-    You may download the libraries needed from the 'requirements.txt' file. Its preferred to do so in a virtual environment in order to <br> 
-    avoid any dependency conflicts. <br> <br>
+    You may download the libraries needed from the 'requirements.txt' file. Its preferred to do so in a virtual environment in order to avoid<br> 
+    any dependency conflicts. <br> <br>
     For more information on how to use venv, refer the following resoure - https://docs.python.org/3/library/venv.html
 
 
