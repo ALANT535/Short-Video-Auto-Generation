@@ -105,4 +105,7 @@ This project simplifies the process of preparing videos of short-form content by
 
 ***
 
+## Future Scope
+Will try to add a UI for this maybe.
+
 Disclaimer: The proposed system should be deployed and used responsibly, adhering to all applicable laws and regulations regarding surveillance and privacy.
