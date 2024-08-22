@@ -36,6 +36,11 @@ Find a few sample generated videos in the output folder of the repository
 The file name of the file represents the subreddit it was picked up from.
 
 
+### Example Video:
+https://github.com/user-attachments/assets/ad918588-dcc7-4e14-9357-0513bc53ab9a
+
+
+
 ## Prerequisites
 
   Python 3.6+: <br>
