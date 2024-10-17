@@ -1,5 +1,6 @@
-/gen_video
-/src/download_video_mine.py
+/genreel
 /output
 /resized_clips
 /API keys
+/src/download_video_mine.py
+/src/get_details_mine.py

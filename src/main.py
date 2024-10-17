@@ -2,8 +2,8 @@
 import pandas as pd
 import os,time
 from excel_operations import *
-from download_video import *
-from get_details import *
+from download_video_mine import *
+from get_details_mine import *
 from video_operations import *
 
 
