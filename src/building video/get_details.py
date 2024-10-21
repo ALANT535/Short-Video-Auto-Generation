@@ -69,11 +69,6 @@ def is_valid(post_duration,post_flair,is_nsfw,post_height,post_width):
     # dont want videos longer thatn 20 seconds
     if (post_duration > 20 or post_duration < 0):
         return False
-
-    
-    # dont want videos with this flair (inappropriate :skull:)
-    if (post_flair == "Donald Trump leaked sex tapes "):
-        return False
     
     if (post_height < post_width or post_height < 0 or post_width < 0):
         return False
