@@ -1,7 +1,6 @@
 import requests
 import time
 
-# Set your access token and IDs
 ACCESS_TOKEN = 'your-access-token'
 INSTAGRAM_BUSINESS_ACCOUNT_ID = 'your-instagram-business-account-id'
 VIDEO_URL = 'your-public-video-url'  # The video should be publicly accessible
