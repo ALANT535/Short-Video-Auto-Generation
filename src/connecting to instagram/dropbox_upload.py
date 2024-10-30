@@ -1,26 +1,44 @@
 import dropbox
-from fastapi import HTTPException
+from requests import HTTPException
+from generate_access_token import *
 
-db = dropbox.Dropbox("short_access_key")
+APP_KEY = ''
+APP_SECRET = ''
 
-file_path = r"C:\Users\LENOVO\Documents\Important_documents\VIT\Projects\REEL_AUTOMATION\output\merged_.mp4"
+REFRESH_TOKEN = ''
 
-# The folder where the video will be saved
-dropbox_destination_path = "/genreel_content/merged_.mp4"
+def upload_to_dropbox():
+    
+    # get a new short lived access token
+    short_access_key = get_new_access_token(APP_KEY , APP_SECRET , REFRESH_TOKEN)
 
-def ensure_folder_exists(path):
-    try:
-        db.files_get_metadata(path)
-    except dropbox.exceptions.ApiError as e:
-        if e.error.is_path() and e.error.get_path().is_not_found():
-            db.files_create_folder_v2(path)
-            print(f"Created folder: {path}")
-        else:
-            raise HTTPException(status_code=400, detail=str(e))
+    if (short_access_key == None):
+        raise KeyError("Error code - 100")
 
-# Ensure the folder structure exists first, otherwise quit
-ensure_folder_exists('/genreel_content')
+    db = dropbox.Dropbox(short_access_key)
 
-with open(file_path, 'rb') as f:
-    db.files_upload(f.read(), dropbox_destination_path, mode=dropbox.files.WriteMode("overwrite"))
+    file_path = r"C:\Users\LENOVO\Documents\Important_documents\VIT\Projects\REEL_AUTOMATION\output\merged_.mp4"
+
+    # The folder where the video will be saved
+    dropbox_destination_path = "/genreel_content/merged_.mp4"
+
+
+    # Make sure that the folder exists
+    def ensure_folder_exists(path):
+        try:
+            db.files_get_metadata(path)
+        except dropbox.exceptions.ApiError as e:
+            if e.error.is_path() and e.error.get_path().is_not_found():
+                db.files_create_folder_v2(path)
+                print(f"Created folder: {path}")
+            else:
+                raise HTTPException(status_code=400, detail=str(e))
+
+    # Ensure the folder structure exists first, otherwise quit
+    ensure_folder_exists('/genreel_content')
+
+    with open(file_path, 'rb') as f:
+        db.files_upload(f.read(), dropbox_destination_path, mode=dropbox.files.WriteMode("overwrite"))
+    
+    
 
