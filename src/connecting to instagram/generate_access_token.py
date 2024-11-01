@@ -24,3 +24,6 @@ def get_new_access_token(APP_KEY , APP_SECRET , REFRESH_TOKEN):
     else:
         print("Failed to refresh token:", response.json())
         return None
+
+# sample usage
+# get_new_access_token(APP_KEY , APP_SECRET , REFRESH_TOKEN)
