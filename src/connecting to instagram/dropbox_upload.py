@@ -15,8 +15,6 @@ def upload_to_dropbox():
 
     if (short_access_key == None):
         raise KeyError("Error code - 100")
-    
-    print("Got new short access key - " , short_access_key)
 
     db = dropbox.Dropbox(short_access_key)
 

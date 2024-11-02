@@ -1,10 +1,10 @@
 import requests
 import time
 
-ACCESS_TOKEN = 'your-access-token'
-INSTAGRAM_BUSINESS_ACCOUNT_ID = 'your-instagram-business-account-id'
-VIDEO_URL = 'your-public-video-url'  # The video should be publicly accessible
-CAPTION = 'your-video-caption'
+ACCESS_TOKEN = ''
+INSTAGRAM_BUSINESS_ACCOUNT_ID = ''
+VIDEO_URL = ''  # The video should be publicly accessible
+CAPTION = 'testing for captions'
 
 def create_media_container(instagram_account_id, video_url, caption, access_token):
     url = f"https://graph.facebook.com/v17.0/{instagram_account_id}/media"
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     # Step 1: Create media container
     media_container_id = create_media_container(INSTAGRAM_BUSINESS_ACCOUNT_ID, VIDEO_URL, CAPTION, ACCESS_TOKEN)
     
-    if media_container_id:
+    while (media_container_id):
         # Step 2: Wait for the video to be processed
         time.sleep(10)  # Give it a few seconds to process the media container
         
@@ -76,5 +76,7 @@ if __name__ == "__main__":
         # Step 4: If the media is processed, publish it
         if status == 'FINISHED':
             publish_video(INSTAGRAM_BUSINESS_ACCOUNT_ID, media_container_id, ACCESS_TOKEN)
+            break
         else:
             print(f"Media is not ready for publishing. Status: {status}")
+            print("Trying again.")
