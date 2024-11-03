@@ -112,5 +112,7 @@ This project simplifies the process of preparing videos of short-form content by
 
 ## Future Scope
 Will try to add a UI for this maybe.
+Trying to add integration with the Facebook Graph API to directly process videos as they are processed, so the user wont have to do anything pretty much, just a single click.
+This could also be automated using a job scheduler.
 
 Disclaimer: The proposed system should be deployed and used responsibly, adhering to all applicable laws and regulations regarding copyrights of content being used. Also ensure that the technology adheres to any regional or global regulations.
