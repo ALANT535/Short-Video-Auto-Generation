@@ -2,8 +2,8 @@ import requests
 import time
 
 ACCESS_TOKEN = ''
-INSTAGRAM_BUSINESS_ACCOUNT_ID = ''
-VIDEO_URL = ''  # The video should be publicly accessible
+INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
+VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1'  # The video should be publicly accessible
 CAPTION = 'testing for captions'
 
 def create_media_container(instagram_account_id, video_url, caption, access_token):

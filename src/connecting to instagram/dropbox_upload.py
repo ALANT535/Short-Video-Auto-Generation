@@ -3,10 +3,10 @@ from fastapi import HTTPException
 from generate_access_token import *
 
 
-APP_KEY = ''
-APP_SECRET = ''
+APP_KEY = 'dn0bcugrtiw3mju'
+APP_SECRET = '848vzcex6fymjfb'
 
-REFRESH_TOKEN = ''
+REFRESH_TOKEN = 'Itu-8RIbsBgAAAAAAAAAAc2xSEVuQec84gJJsOFcAXYbLFAzJQm7MH9RTADFufMS'
 
 def upload_to_dropbox():
     
