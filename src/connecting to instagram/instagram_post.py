@@ -2,15 +2,19 @@ import requests
 import time
 
 ACCESS_TOKEN = ''
-INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
-VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1'  # The video should be publicly accessible
-CAPTION = 'testing for captions'
+INSTAGRAM_BUSINESS_ACCOUNT_ID = ''
+VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1'
+# convert it to raw form (just in case)
+CAPTION = '''CURSED MEMES YOU CANNOT UNSEE
+
+#meme #doge #video #funnyvideos #funny #elonmusk'''
 
 def create_media_container(instagram_account_id, video_url, caption, access_token):
-    url = f"https://graph.facebook.com/v17.0/{instagram_account_id}/media"
+    url = f"https://graph.facebook.com/v21.0/{instagram_account_id}/media"
     
     # The payload to create the media container
     payload = {
+        'media_type': 'REELS',
         'video_url': video_url,
         'caption': caption,
         'access_token': access_token
@@ -27,7 +31,7 @@ def create_media_container(instagram_account_id, video_url, caption, access_toke
         return None
 
 def publish_video(instagram_account_id, media_container_id, access_token):
-    url = f"https://graph.facebook.com/v17.0/{instagram_account_id}/media_publish"
+    url = f"https://graph.facebook.com/v21.0/{instagram_account_id}/media_publish"
     
     # The payload to publish the video
     payload = {
@@ -44,9 +48,8 @@ def publish_video(instagram_account_id, media_container_id, access_token):
         print(response.json())
 
 def check_upload_status(media_container_id, access_token):
-    url = f"https://graph.facebook.com/v17.0/{media_container_id}"
+    url = f"https://graph.facebook.com/v21.0/{media_container_id}"
     
-    # Payload to check the status
     params = {
         'fields': 'status',
         'access_token': access_token
@@ -66,17 +69,23 @@ if __name__ == "__main__":
     # Step 1: Create media container
     media_container_id = create_media_container(INSTAGRAM_BUSINESS_ACCOUNT_ID, VIDEO_URL, CAPTION, ACCESS_TOKEN)
     
+    if (media_container_id == None):
+        print("Exiting.")
+        
+    
     while (media_container_id):
         # Step 2: Wait for the video to be processed
         time.sleep(10)  # Give it a few seconds to process the media container
         
-        # Step 3: Check upload status
+        # Step 3: Check upload status and proceed into next step when processed the video
         status = check_upload_status(media_container_id, ACCESS_TOKEN)
         
+        print("Current status :" , status)
+        
         # Step 4: If the media is processed, publish it
-        if status == 'FINISHED':
+        if status == 'Finished: Media has been uploaded and it is ready to be published.':
             publish_video(INSTAGRAM_BUSINESS_ACCOUNT_ID, media_container_id, ACCESS_TOKEN)
             break
-        else:
-            print(f"Media is not ready for publishing. Status: {status}")
-            print("Trying again.")
+        elif('Failed' in status or status == None):
+            print("Was not able to create a media container. Exiting program")
+            break
