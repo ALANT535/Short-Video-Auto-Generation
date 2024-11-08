@@ -10,7 +10,8 @@ def download_video_with_ytdlp(url, output_file):
         subprocess.run(command, shell=True, check=True)
         print(f"Video downloaded successfully as '{output_file}'")
     except subprocess.CalledProcessError as e:
-        print(f"Failed to download video: {e}")
+        print(f"Failed to download video using ytdlp: {e}")
+        raise
 
 # example usage
 # reddit_post_url = 'https://www.reddit.com/r/Unexpected/comments/1ccf3qm/wasnt_even_speeding/'  # Replace this with the URL of the Reddit post
@@ -24,36 +25,44 @@ def strip_metadata(input_path, output_path):
 
 
 # first approach
-def resize_clips(output_path,resized_path,standard_width = 720):
+def resize_clips(output_directory,resized_path,standard_width = 720):
 
     
-    clip_names = list(os.listdir(output_path))
+    clip_names = list(os.listdir(output_directory))
     
     for clip_name in clip_names:
-        clip_path = os.path.join("output",clip_name)
-        
-        clip = VideoFileClip(clip_path)
-        
-        clip_width = clip.size[0]
-        clip_height = clip.size[1]
-        
-        # we multiply original height by factor (720 / clip width)
-        new_height = clip_height * (standard_width / clip_width)
         try:
-            resized_clip = clip.resize((standard_width, new_height))
-        except:
-            print("Error when trying to resize.")
+            clip_path = os.path.join(output_directory,clip_name)
+            
+            clip = VideoFileClip(clip_path)
+            
+            clip_width = clip.size[0]
+            clip_height = clip.size[1]
+            
+            # we multiply original height by factor (720 / clip width)
+            new_height = clip_height * (standard_width / clip_width)
+            try:
+                resized_clip = clip.resize((standard_width, new_height))
+            except:
+                print("Error when trying to resize.")
 
-        resized_clip_name = os.path.join(resized_path,"resized_" + str(standard_width) + "_" + str(new_height) + "_.mp4")
+            resized_clip_name = os.path.join(resized_path,"resized_" + str(standard_width) + "_" + str(new_height) + "_.mp4")
+            
+            try:
+                resized_clip.write_videofile(resized_clip_name, codec='libx264')
+            except Exception as e:
+                print("The resized file was made but failed to write it to file system." , e)
+                raise
         
-        try:
-            resized_clip.write_videofile(resized_clip_name, codec='libx264')
-        except:
-            print("Error when trying to write resized file.")
+        except Exception as e:
+            print("Error when trying to resize clip with name -" , clip_name , "\n", e)
+            clip.write_videofile(clip_name , )
+            
+            
     
     print("Resized all clips\n Going for deleting the videos in output folder")
     time.sleep(3)
-    delete_files(output_path)
+    delete_files(output_directory)
     
     
 def delete_files(dir_path):

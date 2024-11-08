@@ -69,7 +69,7 @@ def is_valid(post_duration,post_flair,is_nsfw,post_height,post_width):
     # dont want videos longer thatn 20 seconds
     if (post_duration > 20 or post_duration < 0):
         return False
-    
+
     if (post_height < post_width or post_height < 0 or post_width < 0):
         return False
     
@@ -77,5 +77,8 @@ def is_valid(post_duration,post_flair,is_nsfw,post_height,post_width):
     return True
 
 # example usage
-# get_post_details(r"https://www.reddit.com/r/Unexpected/comments/1cuuxxa/they_better_tip_that_crab_good/.json")
+# post_details = get_post_details(r"https://www.reddit.com/r/Unexpected/comments/1cuuxxa/they_better_tip_that_crab_good/.json")
+# print(post_details)
 # print(is_valid(17,"None",True))
+
+# print(generate_links("Unexpected",10))

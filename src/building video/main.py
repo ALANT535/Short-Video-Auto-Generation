@@ -1,4 +1,4 @@
-# import praw
+import requests , sys
 import pandas as pd
 import os,time
 from excel_operations import *
@@ -15,11 +15,22 @@ def create(subreddit):
     delete_files(r"output")
     delete_files(r"resized_clips")
     
+    root_directory = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    output_directory = os.path.join(root_directory,"output")
+    
     counter = get_counter(subreddit)
-    post_links = generate_links(subreddit,counter)
+    try:
+        post_links = generate_links(subreddit,counter)
+        
+    except requests.exceptions.ConnectionError as e:
+        print(f"Connection error: {e}")
+        print("Connect the Internet")
+        sys.exit(1)
+        
+    except Exception as e:
+        print(f"A non-connection related error occurred: {e}")
+        sys.exit(1)
 
-    os.path.abspath(__file__)
-    ouptut_directory = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"output")
 
     current_duration_counter = 0
     # used to keep track of the current video duration
@@ -30,7 +41,16 @@ def create(subreddit):
         counter += 1
         
         post_link = r"{}{}.json".format(post_link, "")
-        post_title,post_duration,post_flair,is_nsfw,post_height,post_width = get_post_details(post_link)
+        try:
+            post_title,post_duration,post_flair,is_nsfw,post_height,post_width = get_post_details(post_link)
+        except requests.exceptions.ConnectionError as e:
+            print("Connection error: " , e)
+            print("Connect to the internet")
+            continue
+            
+        except Exception as e:
+            print("A non connection related error has occured")
+            continue
         
         if (is_valid(post_duration,post_flair,is_nsfw,post_height,post_width)):
             try:
@@ -49,16 +69,22 @@ def create(subreddit):
             print("Skipping the video as not valid")
             continue
     
+    video_count = len(os.listdir(ouptut_directory))
+    
+    if (video_count == 0):
+        print("There are no downloaded clips to make the video")
+        sys.exit(1)
+        
+    
     video_width = 720
-    resized_path = r"resized_clips"
-    output_path = r"output"
+    resized_directory = os.path.join(root_directory , r"resized_clips")
     
     # resize all the clips to a standard width( may be 720p )
-    resize_clips(output_path,resized_path,video_width)
+    resize_clips(output_directory,resized_directory,video_width)
     
     # merge all the clips together to get merged_.mp4
     # this will be stored in the resized_clisp folder
-    merge_videos(resized_path,os.path.join("output","merged_.mp4"))
+    merge_videos(resized_directory,os.path.join("output","merged_.mp4"))
     
         
     try:
