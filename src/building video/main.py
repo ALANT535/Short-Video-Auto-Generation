@@ -54,7 +54,7 @@ def create(subreddit):
         
         if (is_valid(post_duration,post_flair,is_nsfw,post_height,post_width)):
             try:
-                download_video_with_ytdlp(post_link,os.path.join(ouptut_directory,"video_" + str(post_width) + "_" + str(post_height) + "_"))
+                download_video_with_ytdlp(post_link,os.path.join(output_directory,"video_" + str(post_width) + "_" + str(post_height) + "_"))
                 
                 current_duration_counter += post_duration
                 
@@ -69,10 +69,10 @@ def create(subreddit):
             print("Skipping the video as not valid")
             continue
     
-    video_count = len(os.listdir(ouptut_directory))
+    video_count = len(os.listdir(output_directory))
     
     if (video_count == 0):
-        print("There are no downloaded clips to make the video")
+        print("There are no downloaded clips to make the video. Exiting.")
         sys.exit(1)
         
     
@@ -80,7 +80,13 @@ def create(subreddit):
     resized_directory = os.path.join(root_directory , r"resized_clips")
     
     # resize all the clips to a standard width( may be 720p )
-    resize_clips(output_directory,resized_directory,video_width)
+    resize_clips(output_directory, resized_directory, video_width)
+    
+    resized_video_count = len(os.listdir(resized_directory))
+    
+    if (resized_video_count == 0):
+        print("There are no downloaded clips to make the video. Exiting.")
+        sys.exit(1)
     
     # merge all the clips together to get merged_.mp4
     # this will be stored in the resized_clisp folder

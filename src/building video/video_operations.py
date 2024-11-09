@@ -56,7 +56,13 @@ def resize_clips(output_directory,resized_path,standard_width = 720):
         
         except Exception as e:
             print("Error when trying to resize clip with name -" , clip_name , "\n", e)
-            clip.write_videofile(clip_name , )
+            updated_clip_name = os.path.join(resized_path,"resized_" + str(clip_width) + "_" + str(clip_height) + "original_.mp4")
+            print("Trying to write the original file itself")
+            try:
+                clip.write_videofile(updated_clip_name , codec='libx264')
+            except Exception as e:
+                print("Error when trying to write the original video file as well." , e)
+            continue
             
             
     
@@ -85,12 +91,25 @@ def merge_videos(resized_path, merged_path):
     
     video_clips = [VideoFileClip(video_clip) for video_clip in video_paths]
 
-    final_clip = concatenate_videoclips(video_clips,method="compose")
+    try:
+        final_clip = concatenate_videoclips(video_clips,method="compose")
+    except Exception as e:
+        print("Error when trying to concatenate file." , e)
+        raise
+    finally:
+        time.sleep(3)
+        delete_files(resized_path)
+        
 
-    final_clip.write_videofile(merged_path, codec="libx264")
+    try:
+        final_clip.write_videofile(merged_path, codec="libx264")
+    except Exception as e:
+        print("Error when trying to concatenate file." , e)
+        raise
+
     
-    time.sleep(3)
-    delete_files(resized_path)
+    # time.sleep(3)
+    # delete_files(resized_path)
 
 
 # example usage
