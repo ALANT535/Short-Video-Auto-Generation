@@ -106,6 +106,9 @@ def merge_videos(resized_path, merged_path):
     except Exception as e:
         print("Error when trying to concatenate file." , e)
         raise
+    finally:
+        time.sleep(3)
+        delete_files(resized_path)
 
     
     # time.sleep(3)

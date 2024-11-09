@@ -90,7 +90,10 @@ def create(subreddit):
     
     # merge all the clips together to get merged_.mp4
     # this will be stored in the resized_clisp folder
-    merge_videos(resized_directory,os.path.join("output","merged_.mp4"))
+    try:
+        merge_videos(resized_directory,os.path.join("output","merged_.mp4"))
+    except Exception as e:
+        print("Got the above error when trying to merge the videos. " ,e)
     
         
     try:
