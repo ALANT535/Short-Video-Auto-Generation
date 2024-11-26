@@ -10,6 +10,8 @@ def get_counter(subreddit):
         
     except:
         print("couldnt open excel file.")
+        raise
+    
         
     
     #if the subreddit has already been used before, then consider videos after that counter

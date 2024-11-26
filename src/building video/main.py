@@ -11,14 +11,19 @@ from video_operations import *
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
 def create(subreddit):
     
-    # deleting any temporary video clips
+    # Deleting any temporary video clips
     delete_files(r"output")
     delete_files(r"resized_clips")
     
     root_directory = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     output_directory = os.path.join(root_directory,"output")
     
-    counter = get_counter(subreddit)
+    try:
+        counter = get_counter(subreddit)
+        
+    except Exception as e:
+        print("Getting the following error when trying to read the counter from the excel file.\n",e)
+        
     try:
         post_links = generate_links(subreddit,counter)
         
@@ -34,7 +39,9 @@ def create(subreddit):
 
     current_duration_counter = 0
     # used to keep track of the current video duration
-    # want it to be 120 seconds
+    required_duration = 60
+    # Change this as per your use case
+    # want it to be 60 seconds
 
     for post_link in post_links:
         # keep track of the counter so that you can update the same in the database
@@ -62,7 +69,7 @@ def create(subreddit):
                 print("Error when downloading video with link - ",post_link)
         
         # we got as many videos as we wanted
-        if (current_duration_counter>60):
+        if (current_duration_counter > required_duration):
             break
             
         else:
