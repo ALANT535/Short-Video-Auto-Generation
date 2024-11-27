@@ -22,7 +22,7 @@ def create(subreddit):
         counter = get_counter(subreddit)
         
     except Exception as e:
-        print("Getting the following error when trying to read the counter from the excel file.\n",e)
+        print("Getting the above error when trying to read the counter from the excel file.\n",e)
         
     try:
         post_links = generate_links(subreddit,counter)
