@@ -22,8 +22,9 @@ def create(subreddit):
         counter = get_counter(subreddit)
         
     except Exception as e:
-        print("Getting the above error when trying to read the counter from the excel file.\n",e)
-        
+        print(f"Error when trying to read counter.\n{e}\n\n","Error Code - 101")
+        sys.exit(1)
+    
     try:
         post_links = generate_links(subreddit,counter)
         
@@ -33,7 +34,7 @@ def create(subreddit):
         sys.exit(1)
         
     except Exception as e:
-        print(f"A non-connection related error occurred: {e}")
+        print(f"A non-connection related error occurred when trying to fetch post details.\n{e}")
         sys.exit(1)
 
 

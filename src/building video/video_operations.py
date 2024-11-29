@@ -80,6 +80,7 @@ def delete_files(dir_path):
                 print(f"Deleted file: {file_path}")
         except Exception as e:
             print(f"Failed to delete {file_path}due to reason: {e}")
+            continue
     print("Deleted all videos in - " , dir_path)
 
 
