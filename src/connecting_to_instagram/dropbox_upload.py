@@ -82,6 +82,9 @@ def get_public_link(db , file_path):
     except dropbox.exceptions.ApiError as e:
         raise Exception(e)
 
+    # Will always return "https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1"
+    # But, keep this code in case something changes
+
 try:    
     public_link = upload_to_dropbox()
 except KeyError as e:

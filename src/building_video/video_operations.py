@@ -14,14 +14,6 @@ def download_video_with_ytdlp(url, output_file):
         raise
 
 # example usage
-# reddit_post_url = 'https://www.reddit.com/r/Unexpected/comments/1ccf3qm/wasnt_even_speeding/'  # Replace this with the URL of the Reddit post
-# download_video_with_ytdlp(reddit_post_url, 'Output\\video15.mp4')
-
-
-# possible solution to some of the videos getting corrupted but since the final video is viewable despite the issue have not implemented this part
-# but might be necessary at a later stage
-def strip_metadata(input_path, output_path):
-    os.system(f'ffmpeg -y -i "{input_path}" -vf "transpose=1,transpose=2" "{output_path}"')
 
 
 # first approach
@@ -111,12 +103,12 @@ def merge_videos(resized_path, merged_path):
         time.sleep(3)
         delete_files(resized_path)
 
-    
-    # time.sleep(3)
-    # delete_files(resized_path)
-
 
 # example usage
+# reddit_post_url = 'https://www.red dit.com/r/Unexpected/comments/1ccf3qm/wasnt_even_speeding/'
+# download_video_with_ytdlp(reddit_post_url, 'Output\\video15.mp4')
+
+
 # resize_clips("output","resized_clips",720)
 
 # merge_videos(video_paths,os.path.join("resized_clips","merged_.mp4"))

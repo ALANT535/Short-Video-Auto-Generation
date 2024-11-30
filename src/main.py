@@ -1,15 +1,19 @@
-import requests , sys
-import pandas as pd
-import os,time
-from excel_operations import *
-from download_video_mine import *
-from get_details_mine import *
-from video_operations import *
+import requests , sys , os
+
+curr_directory = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(curr_directory)
+
+from building_video.excel_operations import *
+from building_video.download_video_mine import *
+from building_video.video_operations import *
+from building_video.get_details import *
+from building_video.merging import *
 
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from instagram_part.dropbox_upload import *
+# from excel_operations import *
+# from download_video_mine import *
+# from get_details_mine import *
+# from video_operations import *
 
 
 # Take 25 links more than the current counter
@@ -120,10 +124,10 @@ def create(subreddit):
     # We have to 1. upload it onto dropbox, 2. get the link and then 3. push it onto instagram using the Graph API
     
     # STEP 1 - Upload it onto dropbox
-    try:
-        public_link = upload_to_dropbox()
-    except KeyError as e:
-        print("Error when uploading to dropbox.")
+    # try:
+    #     public_link = upload_to_dropbox()
+    # except KeyError as e:
+    #     print("Error when uploading to dropbox.")
     
     
         
@@ -131,4 +135,4 @@ def create(subreddit):
 if __name__ == "__main__":
     #Enter the subreddit you want to fetch top posts from here
     subreddit = "FunnyDogVideos"
-    create(subreddit)
+    # create(subreddit)
