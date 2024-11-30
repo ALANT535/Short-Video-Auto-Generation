@@ -5,12 +5,6 @@ parent_directory = "\\".join(os.path.abspath(__file__).split("\\")[:-3])
 excel_path = os.path.join(parent_directory,"Excel Files","test.xlsx")
 
 def get_counter(subreddit):
-    # try:
-    #     df = pd.read_excel(excel_path,index_col="SubReddit Name")
-        
-    # except Exception as e:
-    #     print("Couldnt open excel file.\n",e)
-    #     raise
     
     df = pd.read_excel(excel_path,index_col="SubReddit Name")
         

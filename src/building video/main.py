@@ -110,6 +110,15 @@ def create(subreddit):
     except:
         print("There was an error while trying to write the counter")
         
+        
+    # Stage 2 of the project commences here
+    # We have to 1. upload it onto dropbox, 2. get the link and then 3. push it onto instagram using the Graph API
+    
+    # STEP 1 - Upload it onto dropbox
+    
+    
+    
+        
 
 if __name__ == "__main__":
     #Enter the subreddit you want to fetch top posts from here

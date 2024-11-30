@@ -1,14 +1,16 @@
 import requests
 import time
+import sys
 
-ACCESS_TOKEN = ''
-INSTAGRAM_BUSINESS_ACCOUNT_ID = ''
-VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1'
+ACCESS_TOKEN = 'EAAYMpfZBSVSQBOZBJgEbrKcZAeBgk3iZAhSri5QEHrb5WMTKtXrp479CfnKu3drraGriKaGDKXWJOAgDv0lbvMve6ohH1e7xfHB1GwMCXECSQZAIEPdyRxCE4bWsYAWPmUhMTA7wskhyTMD1o4B1mfe6reMvZB5kvcVxexaCbQCn08JD8AfUrrUs9toSgjqG5W'
+INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
+VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c?raw=1'
 # convert it to raw form (just in case)
 CAPTION = '''CURSED MEMES YOU CANNOT UNSEE
 
 #meme #doge #video #funnyvideos #funny #elonmusk'''
 
+# Step 1
 def create_media_container(instagram_account_id, video_url, caption, access_token):
     url = f"https://graph.facebook.com/v21.0/{instagram_account_id}/media"
     
@@ -58,7 +60,6 @@ def check_upload_status(media_container_id, access_token):
     response = requests.get(url, params=params)
     if response.status_code == 200:
         status = response.json().get('status')
-        print(f"Upload status: {status}")
         return status
     else:
         print(f"Failed to check upload status: {response.status_code}")
@@ -71,6 +72,7 @@ if __name__ == "__main__":
     
     if (media_container_id == None):
         print("Exiting.")
+        sys.exit(1)
         
     
     while (media_container_id):
@@ -83,9 +85,12 @@ if __name__ == "__main__":
         print("Current status :" , status)
         
         # Step 4: If the media is processed, publish it
-        if status == 'Finished: Media has been uploaded and it is ready to be published.':
-            publish_video(INSTAGRAM_BUSINESS_ACCOUNT_ID, media_container_id, ACCESS_TOKEN)
+        if ('Finished' in status):
+            print("Finished creating the media container.")
             break
-        elif('Failed' in status or status == None):
-            print("Was not able to create a media container. Exiting program")
-            break
+        
+        elif('Failed' in status or 'failed' in status or status == None):
+            print("Was not able to process the media container. Exiting.")
+            sys.exit(1)
+        
+    publish_video(INSTAGRAM_BUSINESS_ACCOUNT_ID, media_container_id, ACCESS_TOKEN)
