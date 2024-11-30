@@ -87,4 +87,7 @@ try:
 except KeyError as e:
     print("Error when uploading to dropbox.")
 
+# We replace the "&dl" paramater to get the raw video file
+public_link = public_link.replace("&dl=0","&raw=1")
+
 print("\nThe public link is - " , public_link)

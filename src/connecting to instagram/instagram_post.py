@@ -4,7 +4,7 @@ import sys
 
 ACCESS_TOKEN = 'EAAYMpfZBSVSQBOZBJgEbrKcZAeBgk3iZAhSri5QEHrb5WMTKtXrp479CfnKu3drraGriKaGDKXWJOAgDv0lbvMve6ohH1e7xfHB1GwMCXECSQZAIEPdyRxCE4bWsYAWPmUhMTA7wskhyTMD1o4B1mfe6reMvZB5kvcVxexaCbQCn08JD8AfUrrUs9toSgjqG5W'
 INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
-VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c?raw=1'
+VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1'
 # convert it to raw form (just in case)
 CAPTION = '''CURSED MEMES YOU CANNOT UNSEE
 
