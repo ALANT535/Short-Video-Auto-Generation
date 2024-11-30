@@ -108,7 +108,6 @@ def merge_videos(resized_path, merged_path):
 # reddit_post_url = 'https://www.red dit.com/r/Unexpected/comments/1ccf3qm/wasnt_even_speeding/'
 # download_video_with_ytdlp(reddit_post_url, 'Output\\video15.mp4')
 
-
 # resize_clips("output","resized_clips",720)
 
 # merge_videos(video_paths,os.path.join("resized_clips","merged_.mp4"))

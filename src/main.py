@@ -4,10 +4,8 @@ curr_directory = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath
 sys.path.append(curr_directory)
 
 from building_video.excel_operations import *
-from building_video.download_video_mine import *
+from building_video.get_details_mine import *
 from building_video.video_operations import *
-from building_video.get_details import *
-from building_video.merging import *
 
 
 # from excel_operations import *
@@ -20,12 +18,14 @@ from building_video.merging import *
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
 def create(subreddit):
     
-    # Deleting any temporary video clips
-    delete_files(r"output")
-    delete_files(r"resized_clips")
+    parent_directory = "\\".join(os.path.abspath(__file__).split("\\")[:-2])
+    output_directory = os.path.join(parent_directory , "output")
+    resized_directory = os.path.join(parent_directory , "resized_clips")
     
-    root_directory = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    output_directory = os.path.join(root_directory,"output")
+    # Deleting any temporary video clips
+    delete_files(output_directory)
+    delete_files(resized_directory)
+    
     
     try:
         counter = get_counter(subreddit)
@@ -57,7 +57,7 @@ def create(subreddit):
         # keep track of the counter so that you can update the same in the database
         counter += 1
         
-        post_link = r"{}{}.json".format(post_link, "")
+        post_link = r"{}.json".format(post_link)
         try:
             post_title,post_duration,post_flair,is_nsfw,post_height,post_width = get_post_details(post_link)
         except requests.exceptions.ConnectionError as e:
@@ -94,7 +94,6 @@ def create(subreddit):
         
     
     video_width = 720
-    resized_directory = os.path.join(root_directory , r"resized_clips")
     
     # resize all the clips to a standard width( may be 720p )
     resize_clips(output_directory, resized_directory, video_width)
@@ -108,7 +107,7 @@ def create(subreddit):
     # merge all the clips together to get merged_.mp4
     # this will be stored in the resized_clisp folder
     try:
-        merge_videos(resized_directory,os.path.join("output","merged_.mp4"))
+        merge_videos(resized_directory,os.path.join(output_directory,"merged_.mp4"))
     except Exception as e:
         print("Got the above error when trying to merge the videos. " ,e)
     
@@ -133,6 +132,6 @@ def create(subreddit):
         
 
 if __name__ == "__main__":
-    #Enter the subreddit you want to fetch top posts from here
+    #Enter the subreddit you want to make the video out of
     subreddit = "FunnyDogVideos"
-    # create(subreddit)
+    create(subreddit)

@@ -23,7 +23,7 @@ def get_post_details(post_link):
     resp = requests.get(post_link, headers = {'User-agent': 'GENREEL'})
     data = resp.json()
     print(len(data))
-    #parse through the json file
+    #Parse through the json file
 
     post_title = data[0]['data']['children'][0]['data']['title']
     
