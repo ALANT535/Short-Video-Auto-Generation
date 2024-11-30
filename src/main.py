@@ -7,6 +7,11 @@ from get_details_mine import *
 from video_operations import *
 
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from instagram_part.dropbox_upload import *
+
+
 # Take 25 links more than the current counter
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
 def create(subreddit):
@@ -115,7 +120,10 @@ def create(subreddit):
     # We have to 1. upload it onto dropbox, 2. get the link and then 3. push it onto instagram using the Graph API
     
     # STEP 1 - Upload it onto dropbox
-    
+    try:
+        public_link = upload_to_dropbox()
+    except KeyError as e:
+        print("Error when uploading to dropbox.")
     
     
         
