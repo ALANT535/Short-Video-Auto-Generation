@@ -9,13 +9,7 @@ from building_video.video_operations import *
 
 from connecting_to_instagram.dropbox_upload import *
 from connecting_to_instagram.instagram_post import *
-
-
-# from excel_operations import *
-# from download_video_mine import *
-# from get_details_mine import *
-# from video_operations import *
-
+from connecting_to_instagram.generate_access_token import *
 
 # Take 25 links more than the current counter
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
@@ -127,6 +121,7 @@ def create(subreddit):
     
     # STEP 1 - Upload it onto dropbox
     try:
+        short_lived_access_token = get_new_access_token(APP_KEY , APP_SECRET , REFRESH_TOKEN)
         public_link = upload_to_dropbox()
         public_link = public_link.replace("&dl=0","&raw=1")
         # We replace the "&dl" paramater to get the raw video file
@@ -136,7 +131,12 @@ def create(subreddit):
     
     
     # STEP 2 - Upload it onto instagram using GRAPH API
-    
+    try:
+        upload_onto_instagram(public_link)
+        print(f"The {current_duration_counter} second video has been successfully uploaded onto Instagram.\nClips are from the {subreddit} subreddit")
+        print("\nRemeber: You can't blend in when you are made to stand out.")
+    except:
+        print("There was an error when trying to upload onto your Instagram account. Try again.")    
         
 
 if __name__ == "__main__":

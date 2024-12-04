@@ -1,6 +1,5 @@
 import dropbox
 from fastapi import HTTPException
-from generate_access_token import *
 import os
 
 

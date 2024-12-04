@@ -2,13 +2,6 @@ import requests
 import time
 import sys
 
-ACCESS_TOKEN = 'EAAYMpfZBSVSQBOZBJgEbrKcZAeBgk3iZAhSri5QEHrb5WMTKtXrp479CfnKu3drraGriKaGDKXWJOAgDv0lbvMve6ohH1e7xfHB1GwMCXECSQZAIEPdyRxCE4bWsYAWPmUhMTA7wskhyTMD1o4B1mfe6reMvZB5kvcVxexaCbQCn08JD8AfUrrUs9toSgjqG5W'
-INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
-VIDEO_URL = 'https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1'
-# convert it to raw form (just in case)
-CAPTION = '''CURSED MEMES YOU CANNOT UNSEE
-
-#meme #doge #video #funnyvideos #funny #elonmusk'''
 
 # Step 1
 def create_media_container(instagram_account_id, video_url, caption, access_token):
@@ -66,16 +59,25 @@ def check_upload_status(media_container_id, access_token):
         print(response.json())
         return None
 
-if __name__ == "__main__":
+def upload_onto_instagram(VIDEO_URL):
+    
+    ACCESS_TOKEN = 'EAAYMpfZBSVSQBOZBJgEbrKcZAeBgk3iZAhSri5QEHrb5WMTKtXrp479CfnKu3drraGriKaGDKXWJOAgDv0lbvMve6ohH1e7xfHB1GwMCXECSQZAIEPdyRxCE4bWsYAWPmUhMTA7wskhyTMD1o4B1mfe6reMvZB5kvcVxexaCbQCn08JD8AfUrrUs9toSgjqG5W'
+    INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
+    
+    CAPTION = '''CURSED MEMES YOU CANNOT UNSEE
+
+    #meme #doge #video #funnyvideos #funny #elonmusk'''
+    
     # Step 1: Create media container
     media_container_id = create_media_container(INSTAGRAM_BUSINESS_ACCOUNT_ID, VIDEO_URL, CAPTION, ACCESS_TOKEN)
     
     if (media_container_id == None):
-        print("Exiting.")
-        sys.exit(1)
+        print("Couldn't create the media container. Exiting.")
+        raise
         
     
-    while (media_container_id):
+    while (True):
+        
         # Step 2: Wait for the video to be processed
         time.sleep(10)  # Give it a few seconds to process the media container
         
@@ -89,8 +91,8 @@ if __name__ == "__main__":
             print("Finished creating the media container.")
             break
         
-        elif('Failed' in status or 'failed' in status or status == None):
+        elif(status == None or 'failed' in status.lower()):
             print("Was not able to process the media container. Exiting.")
-            sys.exit(1)
+            raise
         
     publish_video(INSTAGRAM_BUSINESS_ACCOUNT_ID, media_container_id, ACCESS_TOKEN)
