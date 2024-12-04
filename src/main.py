@@ -7,6 +7,9 @@ from building_video.excel_operations import *
 from building_video.get_details_mine import *
 from building_video.video_operations import *
 
+from connecting_to_instagram.dropbox_upload import *
+from connecting_to_instagram.instagram_post import *
+
 
 # from excel_operations import *
 # from download_video_mine import *
@@ -123,11 +126,16 @@ def create(subreddit):
     # We have to 1. upload it onto dropbox, 2. get the link and then 3. push it onto instagram using the Graph API
     
     # STEP 1 - Upload it onto dropbox
-    # try:
-    #     public_link = upload_to_dropbox()
-    # except KeyError as e:
-    #     print("Error when uploading to dropbox.")
+    try:
+        public_link = upload_to_dropbox()
+        public_link = public_link.replace("&dl=0","&raw=1")
+        # We replace the "&dl" paramater to get the raw video file
+    except KeyError as e:
+        print("Error when uploading to dropbox.")
+        sys.exit(1)
     
+    
+    # STEP 2 - Upload it onto instagram using GRAPH API
     
         
 

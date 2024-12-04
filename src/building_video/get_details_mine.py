@@ -54,7 +54,7 @@ def get_post_details(post_link):
     print("Post duration is - ",post_duration)
     print("Post flair is - ",post_flair)
     print("Post height is - ",post_height)
-    print("Post width is - ",post_width)
+    print("Post width is - ",post_width,end="\n\n")
     
     return [post_title,post_duration,post_flair,is_nsfw,post_height,post_width]
 
