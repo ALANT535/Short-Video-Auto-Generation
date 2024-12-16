@@ -3,10 +3,8 @@ import praw
 import os
 
 # generate the top posts of all time from a subreddit with a certain limit
-def generate_links(subreddit_name, limit_number):
-
-    #ENTER YOUR REDDIT API DETAILS HERE
-    reddit = praw.Reddit(client_id='', client_secret='', user_agent='')
+def generate_links(subreddit_name, limit_number, reddit):
+    
     subreddit = reddit.subreddit(subreddit_name)
 
     top_posts = subreddit.top(limit=limit_number+25)
@@ -23,7 +21,7 @@ def get_post_details(post_link):
     resp = requests.get(post_link, headers = {'User-agent': 'GENREEL'})
     data = resp.json()
     print(len(data))
-    #parse through the json file
+    #Parse through the json file
 
     post_title = data[0]['data']['children'][0]['data']['title']
     
@@ -54,7 +52,7 @@ def get_post_details(post_link):
     print("Post duration is - ",post_duration)
     print("Post flair is - ",post_flair)
     print("Post height is - ",post_height)
-    print("Post width is - ",post_width)
+    print("Post width is - ",post_width,end="\n\n")
     
     return [post_title,post_duration,post_flair,is_nsfw,post_height,post_width]
 
@@ -77,8 +75,7 @@ def is_valid(post_duration,post_flair,is_nsfw,post_height,post_width):
     return True
 
 # example usage
-# post_details = get_post_details(r"https://www.reddit.com/r/Unexpected/comments/1cuuxxa/they_better_tip_that_crab_good/.json")
-# print(post_details)
+# get_post_details(r"https://www.reddit.com/r/Unexpected/comments/1cuuxxa/they_better_tip_that_crab_good/.json")
 # print(is_valid(17,"None",True))
 
 # print(generate_links("Unexpected",10))

@@ -4,12 +4,13 @@ curr_directory = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath
 sys.path.append(curr_directory)
 
 from building_video.excel_operations import *
-from building_video.get_details_mine import *
+from building_video.get_details import *
 from building_video.video_operations import *
 
 from connecting_to_instagram.dropbox_upload import *
 from connecting_to_instagram.instagram_post import *
 from connecting_to_instagram.generate_access_token import *
+
 
 # Take 25 links more than the current counter
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
@@ -32,7 +33,8 @@ def create(subreddit):
         sys.exit(1)
     
     try:
-        post_links = generate_links(subreddit,counter)
+        reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
+        post_links = generate_links(subreddit, counter, reddit)
         
     except requests.exceptions.ConnectionError as e:
         print(f"Connection error: {e}")
@@ -138,6 +140,18 @@ def create(subreddit):
     except:
         print("There was an error when trying to upload onto your Instagram account. Try again.")    
         
+
+# Relavant API details
+
+# REDDIT API
+client_id = ''
+client_secret = ''
+user_agent = ''
+
+# INSTAGRAM API
+
+
+
 
 if __name__ == "__main__":
     #Enter the subreddit you want to make the video out of
