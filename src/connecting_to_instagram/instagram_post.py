@@ -59,10 +59,7 @@ def check_upload_status(media_container_id, access_token):
         print(response.json())
         return None
 
-def upload_onto_instagram(VIDEO_URL):
-    
-    ACCESS_TOKEN = 'EAAYMpfZBSVSQBOZBJgEbrKcZAeBgk3iZAhSri5QEHrb5WMTKtXrp479CfnKu3drraGriKaGDKXWJOAgDv0lbvMve6ohH1e7xfHB1GwMCXECSQZAIEPdyRxCE4bWsYAWPmUhMTA7wskhyTMD1o4B1mfe6reMvZB5kvcVxexaCbQCn08JD8AfUrrUs9toSgjqG5W'
-    INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
+def upload_onto_instagram(VIDEO_URL , ACCESS_TOKEN , INSTAGRAM_BUSINESS_ACCOUNT_ID):
     
     CAPTION = '''CURSED MEMES YOU CANNOT UNSEE
 

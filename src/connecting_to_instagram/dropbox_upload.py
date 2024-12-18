@@ -1,14 +1,10 @@
 import dropbox
 from fastapi import HTTPException
 import os
+import requests
+from requests.auth import HTTPBasicAuth
 
-
-APP_KEY = 'dn0bcugrtiw3mju'
-APP_SECRET = '848vzcex6fymjfb'
-
-REFRESH_TOKEN = 'Itu-8RIbsBgAAAAAAAAAAc2xSEVuQec84gJJsOFcAXYbLFAzJQm7MH9RTADFufMS'
-
-def upload_to_dropbox():
+def upload_to_dropbox(APP_KEY , APP_SECRET , REFRESH_TOKEN):
     
     # get a new short lived access token
     short_access_key = get_new_access_token(APP_KEY , APP_SECRET , REFRESH_TOKEN)
@@ -19,8 +15,7 @@ def upload_to_dropbox():
     
 
     db = dropbox.Dropbox(short_access_key)
-
-    # file_path = r"C:\Users\LENOVO\Documents\Important_documents\VIT\Projects\REEL_AUTOMATION\output\merged_.mp4"
+    
     parent_directory = "\\".join(os.path.abspath(__file__).split("\\")[:-3])
     file_path = os.path.join(parent_directory,"output","merged_.mp4")
 
@@ -84,3 +79,29 @@ def get_public_link(db , file_path):
 
     # Will always return "https://www.dropbox.com/scl/fi/d8m3tdjj8dpzky5fs513c/merged_.mp4?rlkey=f04kepn1hnwj4kyzyuj12g6ck&raw=1"
     # But, keep this code in case something changes
+
+# Call thIS function to get a new access token
+def get_new_access_token(APP_KEY , APP_SECRET , REFRESH_TOKEN):
+    url = "https://api.dropbox.com/oauth2/token"
+    
+    params = {
+        'grant_type': 'refresh_token',
+        'refresh_token': REFRESH_TOKEN
+    }
+
+    auth = HTTPBasicAuth(APP_KEY, APP_SECRET)
+    
+    response = requests.post(url, data=params, auth=auth)
+
+    # Got the new access token
+    if response.status_code == 200:
+        data = response.json()
+        access_token = data['access_token']
+        print("New access token:", access_token)
+        return access_token
+    else:
+        print("Failed to refresh token:", response.json())
+        return None
+
+# sample usage
+# get_new_access_token(APP_KEY , APP_SECRET , REFRESH_TOKEN)
