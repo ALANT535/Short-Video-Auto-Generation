@@ -44,6 +44,7 @@ The file name of the file represents the subreddit it was picked up from.
 https://github.com/user-attachments/assets/ad918588-dcc7-4e14-9357-0513bc53ab9a
 
 ### Exmaple Video:
+C:\Users\LENOVO\Documents\Important_documents\VIT\Projects\reset_reel_automation\Short-Video-Auto-Generation\output\merged_.mp4
 
 
 ## Prerequisites
