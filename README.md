@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an attempt to automate generation of short videos that are prelevant in short-content type platforms like Instagram Reels, Youtube Shorts etc. The primary motivation is to handle videos of various dimensions and ensure that they compile in a proper manner without manual intervention. The only manual intervention involved in this project is just to run the 'main.py' script. The solution leverages FFmpeg for video processing and Python scripts to automate tasks, making it efficient and reliable. This project helped to explore the moviepy library and its capabilities.
+This is an attempt to automate generation of short videos that are prelevant in short-content type platforms like Instagram Reels, Youtube Shorts etc. The primary motivation is to handle videos of various dimensions and ensure that they compile in a proper manner without manual intervention. The only manual intervention involved in this project is just to run the 'main.py' script. The solution leverages FFmpeg for video processing and Python scripts to automate tasks, making it efficient and reliable. This has recently been integrated into the Instagram API to also directly upload generated content on your instagram account.
 
 ## Technologies Used
 
@@ -28,6 +28,10 @@ This is an attempt to automate generation of short videos that are prelevant in 
     This is built on Youtube-dl which is further built on youtube-dlc as these libraries became inactive, It is a command-line interface that provides
     support for hundreds of websites that have provide multimedia content. Using subprocess module, was able to simulate CLI commands through a python method itself.
     Github link - https://github.com/yt-dlp/yt-dlp
+<br>
+  **Meta Graph API**<br>
+    All interaction with Instagram and Facebook products have to be done through their graph API. A long-lived page access token was generated which does not expire and through that, videos are uploaded directly onto the instagram account. Requires the user to sign into their instagram account.
+  
 
 
 ## Sample Output Videos Created
@@ -39,6 +43,7 @@ The file name of the file represents the subreddit it was picked up from.
 ### Example Video:
 https://github.com/user-attachments/assets/ad918588-dcc7-4e14-9357-0513bc53ab9a
 
+### Exmaple Video:
 
 
 ## Prerequisites
@@ -99,11 +104,9 @@ Once these two variables have been set, execute the main.py script to process an
 
 ## NOTE
 
-1. It's important that the code is run from the working directory of the project. As the paths have been built assuming that. Although it was possible to make the paths completely independent by using abspath(__file) function of the os module, I thought it would impact readability of the code and so choose to make that tradeoff.
+1. Also note that once completed execution, the generated video is stored in the output folder of the project directory. Any temporary files used during the creation of the video are deleted and you dont have to be worried about them.
 
-2. Also note that once completed execution, the generated video is stored in the output folder of the project directory. Any temporary files used during the creation of the video are deleted and you dont have to be worried about them.
-
-3. As for the excel file, I realise its not the best form of storing data, but it was the easiest at this time and thus chose to do it that way.
+2. As for the excel file, I realise its not the best form of storing data, but it was the easiest at this time and thus chose to do it that way.
 
 ## Conclusion
 This project simplifies the process of preparing videos of short-form content by automating resizing and posting. With Python scripts and multimedia tools, it ensures that videos meet the required specifications efficiently. Follow the installation and usage guide to set up and run the project seamlessly. It was fun working and looking forward to working on more of such.
@@ -112,7 +115,9 @@ This project simplifies the process of preparing videos of short-form content by
 
 ## Future Scope
 Will try to add a UI for this maybe.
+
 Trying to add integration with the Facebook Graph API to directly process videos as they are processed, so the user wont have to do anything pretty much, just a single click.
+
 This could also be automated using a job scheduler.
 
 Disclaimer: The proposed system should be deployed and used responsibly, adhering to all applicable laws and regulations regarding copyrights of content being used. Also ensure that the technology adheres to any regional or global regulations.
