@@ -9,7 +9,6 @@ from building_video.video_operations import *
 
 from connecting_to_instagram.dropbox_upload import *
 from connecting_to_instagram.instagram_post import *
-# from connecting_to_instagram.generate_access_token import *
 
 
 # Take 25 links more than the current counter
