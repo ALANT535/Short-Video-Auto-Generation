@@ -1,6 +1,4 @@
-import requests 
-import praw
-import os
+import requests
 
 # generate the top posts of all time from a subreddit with a certain limit
 def generate_links(subreddit_name, limit_number, reddit):

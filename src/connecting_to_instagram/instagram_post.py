@@ -1,6 +1,5 @@
 import requests
 import time
-import sys
 
 
 # Step 1

@@ -35,7 +35,7 @@ def upload_to_dropbox(APP_KEY , APP_SECRET , REFRESH_TOKEN):
                 print(f"Folder doesn't exist. Created new folder: {path}")
             else:
                 print(e,"\nCouldnt create the folder.")
-                raise HTTPException(status_code=400, detail=str(e))
+                raise
 
     # Ensure the folder structure exists first, otherwise quit
     try:
