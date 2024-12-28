@@ -141,6 +141,19 @@ def create(subreddit):
         
 
 # Relavant API details
+# REDDIT API
+client_id = 'DVRt4brRO5KCCi4YSt1E-g'
+client_secret = 'qWCthQ9lapzgBlQNQnbrsAMWQ58ygQ'
+user_agent = 'GENREEL'
+
+# FACEBOOK GRAPH API
+ACCESS_TOKEN = 'EAAYMpfZBSVSQBOyNZAnPPd8JRp8nIZAHwcfTf6XhNMt9mngkH0j6fZCYOxV1PAjifIHbldk95L2rPVTKzHrHArI3mJL7ZAk0wGJ5eQ9y1oc7noQAYLjhqyHhanKlXowDUP6qtOi42VsqLRJNsKZBGBxrnP5tLzO9s1kJF5Hk3GN1oWS4SD0kLxBDjlriFkoLfPaggL9Hur'
+INSTAGRAM_BUSINESS_ACCOUNT_ID = '17841454975440576'
+
+# DROPBOX API
+APP_KEY = 'dn0bcugrtiw3mju'
+APP_SECRET = '848vzcex6fymjfb'
+REFRESH_TOKEN = 'Itu-8RIbsBgAAAAAAAAAAc2xSEVuQec84gJJsOFcAXYbLFAzJQm7MH9RTADFufMS'
 
 if __name__ == "__main__":
     #Enter the subreddit you want to make the video out of
