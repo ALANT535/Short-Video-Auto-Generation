@@ -25,7 +25,7 @@ jobs:
           
       - name: Install Requirements
         run: |
-          pip install -r updated.txt
+          pip install -r final.txt
           
       - name: Run Script
         run: python src/main.py
