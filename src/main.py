@@ -68,7 +68,7 @@ def create(subreddit):
             continue
             
         except Exception as e:
-            print("A non connection related error has occured")
+            print("A non connection related error has occured" , e)
             continue
         
         if (is_valid(post_duration,post_flair,is_nsfw,post_height,post_width)):
