@@ -19,6 +19,9 @@ def create(subreddit):
     parent_directory = "\\".join(os.path.abspath(__file__).split("\\")[:-2])
     output_directory = os.path.join(parent_directory , "output")
     resized_directory = os.path.join(parent_directory , "resized_clips")
+
+    print(parent_directory)
+    print(output_directory)
     
     # Deleting any temporary video clips
     delete_files(output_directory)
