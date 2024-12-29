@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 parent_directory = "\\".join(os.path.abspath(__file__).split("\\")[:-3])
-excel_path = os.path.join(parent_directory,"Excel Files","test.xlsx")
+excel_path = os.path.join(parent_directory,"Excel Files","counter_holder.xlsx")
 
 def get_counter(subreddit):
     
