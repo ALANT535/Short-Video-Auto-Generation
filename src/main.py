@@ -61,7 +61,8 @@ def create(subreddit):
         
         post_link = r"{}.json".format(post_link)
         try:
-            post_title,post_duration,post_flair,is_nsfw,post_height,post_width = get_post_details(post_link)
+            reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
+            post_title, post_flair, is_nsfw, post_height, post_width , post_duration = new_approach(post_link , reddit)
         except requests.exceptions.ConnectionError as e:
             print("Connection error: " , e)
             print("Connect to the internet")
