@@ -16,7 +16,9 @@ def generate_links(subreddit_name, limit_number, reddit):
 #input a link to a reddit post and return the duration, title and flair of the post
 def get_post_details(post_link):
     print("Post Link found - ",post_link)
-    resp = requests.get(post_link, headers = {'User-agent': 'GENREEL'})
+    resp = requests.get(post_link, headers = {'User-agent': 'GENREEL/0.1 by u/Kokki535'})
+    print(f"Status Code - {resp.status_code}")
+    print(resp)
     data = resp.json()
     print(len(data))
     #Parse through the json file
