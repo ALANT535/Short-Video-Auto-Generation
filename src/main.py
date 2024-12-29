@@ -16,7 +16,7 @@ from connecting_to_instagram.instagram_post import *
 # Assuming that the video duration constraint is 20 sec, a 60 second video will be 3 videos
 def create(subreddit):
     
-    parent_directory = "\\".join(os.path.abspath(__file__).split("\\")[:-2])
+    parent_directory = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     output_directory = os.path.join(parent_directory , "output")
     resized_directory = os.path.join(parent_directory , "resized_clips")
 
