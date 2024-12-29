@@ -36,7 +36,7 @@ def new_approach(post_link , reddit):
             post_duration = None
             
         # Add the fetched details to the post_details list
-        post_details = [post_title, post_flair, nsfw_status, post_height, post_width]
+        post_details = [post_title, post_flair, nsfw_status, post_height, post_width , post_duration]
         
         print(f"Post Title - {post_title}")
         print(f"Post Flair - {post_flair}")
