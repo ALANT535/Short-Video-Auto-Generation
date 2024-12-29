@@ -13,6 +13,44 @@ def generate_links(subreddit_name, limit_number, reddit):
     
     return post_details[limit_number+1:]
 
+# trying new approach to work for the github actions
+def new_approach(post_link , reddit):
+    print("Post Link found - ",post_link)
+    post = reddit.submission(id=post_link)
+    try:
+        post_title = post.title if post.title else None
+        
+        post_flair = post.link_flair_text if post.link_flair_text else None
+        
+        nsfw_status = post.over_18 if post.over_18 is not None else None
+
+        video_info = post.media.get('reddit_video', None)
+        
+        if video_info:
+            post_width = video_info.get('width', None)
+            post_height = video_info.get('height', None)
+            post_duration = video_info.get('duration', None)
+        else:
+            post_width = None
+            post_height = None
+            post_duration = None
+            
+        # Add the fetched details to the post_details list
+        post_details = [post_title, post_flair, nsfw_status, post_height, post_width]
+        
+        print(f"Post Title - {post_title}")
+        print(f"Post Flair - {post_flair}")
+        print(f"NSFW: {nsfw_status}")
+        print(f"Post Height: {post_height}")
+        print(f"Post Width: {post_width}")
+        print(f"Post Duration: {post_duration}")
+        
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        raise
+    return post_details
+    
+
 #input a link to a reddit post and return the duration, title and flair of the post
 def get_post_details(post_link):
     print("Post Link found - ",post_link)
