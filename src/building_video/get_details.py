@@ -16,7 +16,9 @@ def generate_links(subreddit_name, limit_number, reddit):
 # trying new approach to work for the github actions
 def new_approach(post_link , reddit):
     print("Post Link found - ",post_link)
-    post = reddit.submission(id=post_link)
+    post_id = post_link.split("/")[-3]
+    post = reddit.submission(post_id)
+    
     try:
         post_title = post.title if post.title else None
         
