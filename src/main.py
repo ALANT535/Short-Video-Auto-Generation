@@ -59,7 +59,6 @@ def create(subreddit):
         # keep track of the counter so that you can update the same in the database
         counter += 1
         
-        post_link = r"{}.json".format(post_link)
         try:
             reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent=user_agent)
             post_title, post_flair, is_nsfw, post_height, post_width , post_duration = new_approach(post_link , reddit)
