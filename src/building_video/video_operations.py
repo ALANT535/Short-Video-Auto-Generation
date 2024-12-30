@@ -2,6 +2,7 @@ import subprocess,os,time
 from moviepy.editor import VideoFileClip,concatenate_videoclips
 
 def download_video_with_ytdlp(url, output_file):
+    print("The url i am trying to download is - ",url)
     # CMD command to download the video using yt-dlp
     command = f'yt-dlp -o "{output_file}" {url}'
     
@@ -12,8 +13,6 @@ def download_video_with_ytdlp(url, output_file):
     except subprocess.CalledProcessError as e:
         print(f"Failed to download video using ytdlp: {e}")
         raise
-
-# example usage
 
 
 # first approach
