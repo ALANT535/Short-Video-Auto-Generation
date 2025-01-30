@@ -26,6 +26,15 @@ jobs:
       - name: Install Requirements
         run: |
           pip install -r final.txt
+
+      # Step 1: Update yt-dlp to the latest version
+      - name: Update yt-dlp
+        run: pip install -U yt-dlp
+
+      # Step 2: Debug yt-dlp command
+      - name: Debug yt-dlp
+        run: |
+          yt-dlp -v -o "/home/runner/work/Short-Video-Auto-Generation/Short-Video-Auto-Generation/output/video_480_852_" https://www.reddit.com/r/FunnyDogVideos/comments/17oz095/dogs_eye_expressions/
           
       - name: Run Script
         run: python src/main.py
